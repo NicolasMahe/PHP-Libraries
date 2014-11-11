@@ -26,18 +26,16 @@ class Log
 	
 	public static function write()
 	{
-		if(!empty(self::$data))
-		{
+		if(!empty(self::$data)) {
 			$oldLog = self::getAll();
 			if(!empty($oldLog))
 				self::$data = array_merge($oldLog, self::$data);
 				
 			$retour = Storage::write(Config::get('storagePathLog'), self::$data);
 			
-			if($retour)
+			if($retour) {
 				return true;
-			else
-			{
+			} else {
 				Error::add('error during writing the log to the storage file');
 				return false;
 			}
@@ -48,12 +46,9 @@ class Log
 	{
 		$log = Storage::read(Config::get('storagePathLog'));
 		
-		if(!empty($log))
-		{
+		if(!empty($log)) {
 			return $log;
-		}
-		else
-		{
+		} else {
 			Error::add('error during reading the log file');
 		}
 	}
