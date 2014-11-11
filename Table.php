@@ -11,35 +11,28 @@ class Table
     
     function __construct($name)
     {
-        if(!empty($name))
-        {
+        if(!empty($name)) {
             $filePath = Config::get('storagePath').$name.$this->extension;
             $data = Storage::read($filePath);
             
             $this->name = $name;
             
-            if($data)
-            {
-                if(!empty($data))
-                {
-                    if(!empty($data['data']) && !empty($data['nextId']))
-                    {
+            if($data) {
+                if(!empty($data)) {
+                    if(!empty($data['data']) && !empty($data['nextId'])) {
                         $this->data = $data['data'];
                         $this->nextId = $data['nextId'];
                     }
                 }
             }
-        }
-        else
-        {
+        } else {
             Error::add('Table name is empty');
         }
     }
 
     function __destruct()
     {
-        if($this->hasBeenModify)
-        {
+        if($this->hasBeenModify) {
             $arrayToWrite = array(
                 "nextId" => $this->nextId,
                 "data" => $this->data
@@ -48,8 +41,7 @@ class Table
             $filePath = Config::get('storagePath').$this->name.$this->extension;
             $retour = Storage::write($filePath, $arrayToWrite);
 
-            if(!$retour)
-            {
+            if(!$retour) {
                 Error::add('Error during writing the storage for "'.$this->name.'"');
             }
         }
@@ -57,8 +49,7 @@ class Table
     
     public function add($data)
     {
-        if(!empty($data) && is_array($data))
-        {
+        if(!empty($data) && is_array($data)) {
             $data['id'] = $this->nextId;
             $data['createdAt'] = date("Y-m-d H:i:s");
             $this->data[] = $data;
@@ -66,9 +57,7 @@ class Table
             $this->hasBeenModify = true;
             
             return true;
-        }
-        else
-        {
+        } else {
             Error::add('Data is empty or not an array');
         }
         
@@ -77,10 +66,8 @@ class Table
     
     public function get($id)
     {
-        foreach ($this->data as $data)
-        {
-            if($data['id'] == $id)
-            {
+        foreach ($this->data as $data) {
+            if($data['id'] == $id) {
                 return $data;
             }
         }
@@ -90,10 +77,8 @@ class Table
     
     public function delete($id)
     {
-        foreach ($this->data as $key => $data)
-        {
-            if($data['id'] == $id)
-            {
+        foreach ($this->data as $key => $data) {
+            if($data['id'] == $id) {
                 unset($this->data[$key]);
                 $this->hasBeenModify = true;
                 
@@ -106,10 +91,8 @@ class Table
     
     public function update($dataUpdated)
     {
-        foreach ($this->data as &$data)
-        {
-            if($data['id'] == $dataUpdated['id'])
-            {
+        foreach ($this->data as &$data) {
+            if($data['id'] == $dataUpdated['id']) {
                 $data = $dataUpdated;
                 $this->hasBeenModify = true;
                 
