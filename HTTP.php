@@ -23,8 +23,7 @@ class HTTP
         $context  = stream_context_create($opts);
         $content = file_get_contents($url, false, $context);
         
-        if($content)
-        {
+        if($content) {
             if($decodeJson) {
                 $json = json_decode($content, true);
 
@@ -46,9 +45,7 @@ class HTTP
             } else {
                 return $content;
             }
-        }
-        else
-        {
+        } else {
             Error::add('HTTP get no data from "'.$url.'"');
             return false;
         }
