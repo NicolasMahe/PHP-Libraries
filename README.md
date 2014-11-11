@@ -1,4 +1,4 @@
 PHP-Libraries
 =============
 
-Hand made PHP libraries
+Handmade PHP libraries
