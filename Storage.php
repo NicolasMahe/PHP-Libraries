@@ -2,7 +2,7 @@
 
 class Storage
 {
-    public static function write($filePath, $data, $jsonEncode=true)
+    public static function write($filePath, $data, $jsonEncode=false)
     {
         if($jsonEncode) {
             $data = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
@@ -26,7 +26,7 @@ class Storage
         return true;
     }
 
-    public static function read($filePath, $jsonDecode=true)
+    public static function read($filePath, $jsonDecode=false)
     {
         $fileExists = file_exists($filePath);
 
@@ -35,8 +35,7 @@ class Storage
 
             if($content === FALSE) {
                 Error::add('Storage failed to read file "'.$filePath.'"');
-            }
-            else {
+            } else {
                 $data = json_decode($content, true);
 
                 if($data === false) {
@@ -45,9 +44,8 @@ class Storage
                     return $data;
                 }
             }
-        }
-        else {
-                Error::add('Storage file "'.$filePath.'" do not exist');
+        } else {
+            Error::add('Storage file "'.$filePath.'" do not exist');
         }
 
         return;
