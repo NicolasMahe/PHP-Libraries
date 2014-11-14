@@ -36,12 +36,16 @@ class Storage
             if($content === FALSE) {
                 Error::add('Storage failed to read file "'.$filePath.'"');
             } else {
-                $data = json_decode($content, true);
-
-                if($data === false) {
-                    Error::add('Error during decoding json from file "'.$filePath.'"');
+                if($jsonDecode) {
+                    $data = json_decode($content, true);
+                    
+                    if($data === false) {
+                        Error::add('Error during decoding json from file "'.$filePath.'"');
+                    } else {
+                        return $data;
+                    }
                 } else {
-                    return $data;
+                    return $content;
                 }
             }
         } else {
