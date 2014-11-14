@@ -31,7 +31,7 @@ class Log
             if(!empty($oldLog))
                 self::$data = array_merge($oldLog, self::$data);
                 
-            $retour = Storage::write(Config::get('storagePathLog'), self::$data);
+            $retour = Storage::write(Config::get('storagePathLog'), self::$data, true);
             
             if($retour) {
                 return true;
@@ -44,7 +44,7 @@ class Log
     
     public static function getAll()
     {
-        $log = Storage::read(Config::get('storagePathLog'));
+        $log = Storage::read(Config::get('storagePathLog'), true);
         
         if(!empty($log)) {
             return $log;
@@ -55,6 +55,6 @@ class Log
     
     public static function reset()
     {
-        Storage::write(Config::get('storagePathLog'), array());
+        Storage::write(Config::get('storagePathLog'), array(), true);
     }
 }

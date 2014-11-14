@@ -13,7 +13,7 @@ class Table
     {
         if(!empty($name)) {
             $filePath = Config::get('storagePath').$name.$this->extension;
-            $data = Storage::read($filePath);
+            $data = Storage::read($filePath, true);
             
             $this->name = $name;
             
@@ -39,7 +39,7 @@ class Table
             );
 
             $filePath = Config::get('storagePath').$this->name.$this->extension;
-            $retour = Storage::write($filePath, $arrayToWrite);
+            $retour = Storage::write($filePath, $arrayToWrite, true);
 
             if(!$retour) {
                 Error::add('Error during writing the storage for "'.$this->name.'"');

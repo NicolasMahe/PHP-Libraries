@@ -6,7 +6,7 @@ class Config
     
     private static function init()
     {
-        self::$config = Storage::read('config.json');
+        self::$config = Storage::read('config.json', true);
         
         if(empty(self::$config)) {
             Error::add('Config file empty');
