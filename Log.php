@@ -12,14 +12,14 @@ class Log
                 'action' => ucfirst($action),
                 'status' => $status,
                 'message' => $message,
-                'date' => gmdate("Y-m-d\TH:i:s\Z")
+                'date' => Date::isoString()
             );
         } else {
             self::$data[] = array(
                 'method' => ucfirst($method),
                 'status' => ucfirst($action),
                 'message' => $status,
-                'date' => gmdate("Y-m-d\TH:i:s\Z")
+                'date' => Date::isoString()
             );
         }
     }

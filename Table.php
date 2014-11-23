@@ -51,7 +51,7 @@ class Table
     {
         if(!empty($data) && is_array($data)) {
             $data['id'] = $this->nextId;
-            $data['createdAt'] = gmdate("Y-m-d H:i:s");
+            $data['createdAt'] = Date::isoString();
             $this->data[] = $data;
             $this->nextId++;
             $this->hasBeenModify = true;
