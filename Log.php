@@ -12,14 +12,14 @@ class Log
                 'action' => ucfirst($action),
                 'status' => $status,
                 'message' => $message,
-                'date' => date("Y-m-d\TH:i:s\Z")
+                'date' => gmdate("Y-m-d\TH:i:s\Z")
             );
         } else {
             self::$data[] = array(
                 'method' => ucfirst($method),
                 'status' => ucfirst($action),
                 'message' => $status,
-                'date' => date("Y-m-d\TH:i:s\Z")
+                'date' => gmdate("Y-m-d\TH:i:s\Z")
             );
         }
     }
@@ -28,8 +28,9 @@ class Log
     {
         if(!empty(self::$data)) {
             $oldLog = self::getAll();
-            if(!empty($oldLog))
+            if(!empty($oldLog)) {
                 self::$data = array_merge($oldLog, self::$data);
+            }
                 
             $retour = Storage::write(Config::get('storagePathLog'), self::$data, true);
             
