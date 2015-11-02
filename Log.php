@@ -4,7 +4,7 @@ class Log
 {
     private static $data = array();
 
-    public static function add($method, $action, $status, $message)
+    public static function add($method, $action, $status, $message = null)
     {
         if(!empty($message)) {
             self::$data[] = array(
