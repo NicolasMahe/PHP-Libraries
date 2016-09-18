@@ -37,7 +37,7 @@ class Log
             if($retour) {
                 return true;
             } else {
-                Error::add('error during writing the log to the storage file');
+                ErrorPerso::add('error during writing the log to the storage file');
                 return false;
             }
         }
@@ -50,7 +50,7 @@ class Log
         if(!empty($log)) {
             return $log;
         } else {
-            Error::add('error during reading the log file');
+            ErrorPerso::add('error during reading the log file');
         }
     }
     

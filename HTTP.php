@@ -30,7 +30,7 @@ class HTTP
                 if($json) {
                     return $json;
                 } else {
-                    Error::add('HTTP get error during json decode from "'.$url.'"');
+                    ErrorPerso::add('HTTP get error during json decode from "'.$url.'"');
                     return false;
                 }
             } else if($decodeGz) {
@@ -39,14 +39,14 @@ class HTTP
                 if($gz) {
                     return $gz;
                 } else {
-                    Error::add('HTTP get error during gz decode from "'.$url.'"');
+                    ErrorPerso::add('HTTP get error during gz decode from "'.$url.'"');
                     return false;
                 }
             } else {
                 return $content;
             }
         } else {
-            Error::add('HTTP get no data from "'.$url.'"');
+            ErrorPerso::add('HTTP get no data from "'.$url.'"');
             return false;
         }
     }
@@ -95,7 +95,7 @@ class HTTP
             if($methodXmlrpc) {
                 $response = xmlrpc_decode($content);
                 if (xmlrpc_is_fault($response)) {
-                    Error::add('HTTP post error during xmlrpc decode from "'.$url.'"');
+                    ErrorPerso::add('HTTP post error during xmlrpc decode from "'.$url.'"');
                     return false;
                 } else {
                     return $response;
@@ -106,14 +106,14 @@ class HTTP
                 if($json) {
                     return $json;
                 } else {
-                    Error::add('HTTP post error during json decode from "'.$url.'"');
+                    ErrorPerso::add('HTTP post error during json decode from "'.$url.'"');
                     return false;
                 }
             } else {
                 return $content;
             }
         } else {
-            Error::add('HTTP post no data from "'.$url.'"');
+            ErrorPerso::add('HTTP post no data from "'.$url.'"');
             return false;
         }
     }

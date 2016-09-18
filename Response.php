@@ -20,7 +20,7 @@ class Response
         $response = array(
             'status' => self::$status,
             'data' => self::$data,
-            'error' => Error::getAll()
+            'error' => ErrorPerso::getAll()
         );
         
         echo json_encode($response);

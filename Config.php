@@ -9,7 +9,7 @@ class Config
         self::$config = Storage::read('config.json', true);
         
         if(empty(self::$config)) {
-            Error::add('Config file empty');
+            ErrorPerso::add('Config file empty');
         }
     }
     
@@ -23,7 +23,7 @@ class Config
             return self::$config[$key];
         }
         
-        Error::add('Key "'.$key.'" is unknown');
+        ErrorPerso::add('Key "'.$key.'" is unknown');
         
         return;
     }

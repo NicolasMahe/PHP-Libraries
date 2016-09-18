@@ -26,7 +26,7 @@ class Table
                 }
             }
         } else {
-            Error::add('Table name is empty');
+            ErrorPerso::add('Table name is empty');
         }
     }
 
@@ -42,7 +42,7 @@ class Table
             $retour = Storage::write($filePath, $arrayToWrite, true);
 
             if(!$retour) {
-                Error::add('Error during writing the storage for "'.$this->name.'"');
+                ErrorPerso::add('Error during writing the storage for "'.$this->name.'"');
             }
         }
     }
@@ -58,7 +58,7 @@ class Table
             
             return true;
         } else {
-            Error::add('Data is empty or not an array');
+            ErrorPerso::add('Data is empty or not an array');
         }
         
         return false;

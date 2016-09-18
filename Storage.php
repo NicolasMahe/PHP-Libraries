@@ -19,7 +19,7 @@ class Storage
             }
             file_put_contents($filePath, $data);
         } catch (Exception $e) {
-            Error::add('Storage write to file "'.$filePath.'" failed');
+            ErrorPerso::add('Storage write to file "'.$filePath.'" failed');
             return false;
         }
         
@@ -34,13 +34,13 @@ class Storage
             $content = file_get_contents($filePath);
 
             if($content === FALSE) {
-                Error::add('Storage failed to read file "'.$filePath.'"');
+                ErrorPerso::add('Storage failed to read file "'.$filePath.'"');
             } else {
                 if($jsonDecode) {
                     $data = json_decode($content, true);
                     
                     if($data === false) {
-                        Error::add('Error during decoding json from file "'.$filePath.'"');
+                        ErrorPerso::add('Error during decoding json from file "'.$filePath.'"');
                     } else {
                         return $data;
                     }
@@ -49,7 +49,7 @@ class Storage
                 }
             }
         } else {
-            Error::add('Storage file "'.$filePath.'" do not exist');
+            ErrorPerso::add('Storage file "'.$filePath.'" do not exist');
         }
 
         return;

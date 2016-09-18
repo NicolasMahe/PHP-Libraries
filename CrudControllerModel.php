@@ -13,7 +13,7 @@ abstract class CrudControllerModel
             $this->verbose = $verbose;
             $this->name = $name;
         } else {
-            Error::add('name is empty');
+            ErrorPerso::add('name is empty');
             Response::setStatus('error');
         }
     }
@@ -48,11 +48,11 @@ abstract class CrudControllerModel
                 if($this->verbose) {
                     Log::add($this->name, "add", "error", $this->name." item id '".($this->storage->getNextId() - 1)."' error during add");
                 }
-                Error::add('error during add');
+                ErrorPerso::add('error during add');
                 Response::setStatus('error');
             }
         } else {
-            Error::add('data is empty');
+            ErrorPerso::add('data is empty');
             Response::setStatus('error');
         }
     }
@@ -73,11 +73,11 @@ abstract class CrudControllerModel
                 if($this->verbose) {
                     Log::add($this->name, "update", "error", $this->name." item id '".$data['id']."' error during update");
                 }
-                Error::add('error during update');
+                ErrorPerso::add('error during update');
                 Response::setStatus('error');
             }
         } else {
-            Error::add('data and/or id is empty');
+            ErrorPerso::add('data and/or id is empty');
             Response::setStatus('error');
         }
     }
@@ -98,11 +98,11 @@ abstract class CrudControllerModel
                 if($this->verbose) {
                     Log::add($this->name, "delete", "error", $this->name." item id '".$id."' error during delete");
                 }
-                Error::add('error during delete');
+                ErrorPerso::add('error during delete');
                 Response::setStatus('error');
             }
         } else {
-            Error::add('data and/or id is empty');
+            ErrorPerso::add('data and/or id is empty');
             Response::setStatus('error');
         }	
     }
